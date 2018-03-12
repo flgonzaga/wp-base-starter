@@ -43,3 +43,26 @@ if ( defined('WPBS_ACF_OPTIONS') && WPBS_ACF_OPTIONS === true)
 	    add_action( 'admin_notices', 'wpbs_admin_notice__error' );
 	}
 }
+
+/**
+* Register plugin menu
+*/
+if ( ! function_exists('wpbs_register_plugin_menu') ) 
+{
+	function wpbs_register_plugin_menu() 
+	{
+		add_menu_page( __('WP Base Starter', 'wpbs'), __('WP Base Starter', 'wpbs'), 'manage_options', 'wmpbs_menu_settings', 'wpbs_create_dashboard', 'dashicons-welcome-widgets-menus', 20);
+	}
+	add_action( 'admin_menu', 'wpbs_register_plugin_menu' );
+}
+
+/**
+* Create Plugin Dashboard
+*/
+if ( ! function_exists('wpbs_create_dashboard') ) 
+{
+	function wpbs_create_dashboard()
+	{
+		include ( WPBS_PATH . 'templates/wpbs-dashboard.php' );
+	}
+}
